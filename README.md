@@ -1,16 +1,15 @@
-# Exercício 12 - Node.js Servers
+# Pokecard - BackEnd Server
 
 - Giovanni Shibaki Camargo      Nusp: 11796444
 - Lucas Keiti Anbo Mihara       Nusp: 11796472
+- Vítor Caetano Brustolin       Nusp: 11795589
 
-## Para rodar o servidor basta utilizar o comando abaixo:
+## Para rodar o servidor basta utilizar os comandos abaixo:
+
+> npm install
 
 > npm run start
 
-## Para realizar as operações no servidor utilizar o Postman com a seguinte URL:
+## Para realizar as operações no servidor utilizando o Postman usar a seguinte URL:
 
-> http://localhost:3000/store/
-
-## Para o exercício 2, como o index.html está na pasta public, basta acessar a URL:
-
-> http://localhost:3000/
+> http://localhost:3000/user/signup
