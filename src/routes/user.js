@@ -64,4 +64,22 @@ router.post("/getUser", async (req, res, next) => {
   }
 });
 
+router.post("/updateUserByEmail", async (req, res, next) => {
+  try {
+    let data = req.body;
+    console.log(data);
+
+    const filter = { email: data.email };
+
+    let user = await UsersModel.findOneAndUpdate(filter, data);
+    console.log("Usuario: " + user);
+    res.status(200).send(user);
+  } catch (e) {
+    res.status(500).send({
+      message: "Falha ao processar sua requisição",
+      erro: e.message,
+    });
+  }
+});
+
 module.exports = router;
