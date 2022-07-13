@@ -1,6 +1,7 @@
 /*
   Giovanni Shibaki Camargo    Nusp: 11796444
   Lucas Keiti Anbo Mihara     Nusp: 11796472
+  Vítor Caetano Brustolin     Nusp: 11795589
 */
 
 "use strict";
