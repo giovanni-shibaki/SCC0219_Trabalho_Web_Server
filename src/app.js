@@ -13,6 +13,7 @@ const router = express.Router();
 
 // Carrega as Rotas
 const user = require('./routes/user');
+const card = require('./routes/cards');
 
 app.use(bodyParser.json({
     limit: '1mb'
@@ -30,6 +31,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/user', user);
+app.use('/cards', card);
 app.use(express.static('public'));
 
 module.exports = app;
