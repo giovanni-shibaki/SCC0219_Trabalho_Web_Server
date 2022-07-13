@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     postalCode: String,
     street: String,
     number: String,
+    addressDetails: String,
     city: String,
     state: String,
     country: String,

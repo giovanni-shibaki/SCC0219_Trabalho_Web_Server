@@ -33,12 +33,27 @@ router.post("/signup", async (req, res, next) => {
 
 router.post("/signin", async (req, res, next) => {
   try {
-    console.log("Teste");
-
     let login = req.body;
     console.log(login)
 
     let user = await UsersModel.findOne(login);
+    console.log(user);
+    res.status(200).send(user)
+  } catch (e) {
+    res.status(500).send({
+      message: "Falha ao processar sua requisição",
+      erro: e.message,
+    });
+  }
+});
+
+router.post("/getUser", async (req, res, next) => {
+  try {
+    let data = req.body;
+    console.log(data);
+    const filter = { email: data.email };
+
+    let user = await UsersModel.findOne(filter);
     console.log(user);
     res.status(200).send(user)
   } catch (e) {

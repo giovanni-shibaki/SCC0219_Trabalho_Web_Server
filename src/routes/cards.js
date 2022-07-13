@@ -29,55 +29,71 @@ router.post("/getAllCards", async (req, res, next) => {
 });
 
 router.post("/getCard", async (req, res, next) => {
-    try {
-        let id = req.body;
-        console.log(id);
-    
-        let card = await CardsModel.findOne(id);
-        console.log(card);
-        res.status(200).send(card);
-      } catch (e) {
-        res.status(500).send({
-          message: "Falha ao processar sua requisição",
-          erro: e.message,
-        });
-      }
-  });
+  try {
+    let id = req.body;
+    console.log(id);
+
+    let card = await CardsModel.findOne(id);
+    console.log(card);
+    res.status(200).send(card);
+  } catch (e) {
+    res.status(500).send({
+      message: "Falha ao processar sua requisição",
+      erro: e.message,
+    });
+  }
+});
 
 router.post("/getCardQtd", async (req, res, next) => {
-    try {
-      console.log("Teste");
-  
-      let id = req.body;
-      console.log(id);
-  
-      let card = await CardsModel.findOne(id);
-      console.log(card);
-      res.status(200).send(card);
-    } catch (e) {
-      res.status(500).send({
-        message: "Falha ao processar sua requisição",
-        erro: e.message,
-      });
-    }
-  });
+  try {
+    console.log("Teste");
 
-  router.post("/updateCardById", async (req, res, next) => {
-    try {
-        let data = req.body.data;
-        console.log(data);
+    let id = req.body;
+    console.log(id);
 
-        const filter = { id: data.id };
-    
-        let card = await CardsModel.findOneAndUpdate(filter, data);
-        console.log("Carta: "+card);
-        res.status(200).send(card);
-      } catch (e) {
-        res.status(500).send({
-          message: "Falha ao processar sua requisição",
-          erro: e.message,
-        });
-      }
-  });
+    let card = await CardsModel.findOne(id);
+    console.log(card);
+    res.status(200).send(card);
+  } catch (e) {
+    res.status(500).send({
+      message: "Falha ao processar sua requisição",
+      erro: e.message,
+    });
+  }
+});
+
+router.post("/updateCardById", async (req, res, next) => {
+  try {
+    let data = req.body.data;
+    console.log(data);
+
+    const filter = { id: data.id };
+
+    let card = await CardsModel.findOneAndUpdate(filter, data);
+    console.log("Carta: " + card);
+    res.status(200).send(card);
+  } catch (e) {
+    res.status(500).send({
+      message: "Falha ao processar sua requisição",
+      erro: e.message,
+    });
+  }
+});
+
+router.post("/addCard", async (req, res, next) => {
+  try {
+    let card = req.body;
+    new CardsModel(card).save((err, doc) => {
+      console.log(err);
+    });
+    console.log(card);
+    res.send(card);
+  } catch (e) {
+    res.status(500).send({
+      message: "Falha ao processar sua requisição",
+      erro: e.message,
+    });
+  }
+});
 
 module.exports = router;
