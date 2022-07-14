@@ -137,41 +137,13 @@ router.get("/getCardOfTheDay", async (req, res, next) => {
     } else {
       card = await CardsModel.findOne({"id": lastCard.cardId})
     }
-    card.tcgplayer.prices.holofoil.low *= 0.5
     console.log(card)
+    
+    if (card.tcgplayer && card.tcgplayer.prices && card.tcgplayer.prices.holofoil)
+      card.tcgplayer.prices.holofoil.low *= 0.5
+    else if (card.tcgplayer && card.tcgplayer.prices && card.tcgplayer.prices.normal)
+      card.tcgplayer.prices.normal.low *= 0.5
     res.send(card)
-
-
-
-    // let userEmail = req.body;
-    // let user = await UsersModel.findOne({ "email": userEmail.userEmail })
-
-    // if (!user.cardOfTheDay) {
-    //   user.cardOfTheDay = {
-    //     cardId: null,
-    //     discount: null,
-    //     lastDay: null
-    //   }
-    // }
-
-    // user.cardOfTheDay.lastDay ??= "2000-01-01"
-    // let today = new Date(); 
-    // var lastDay = new Date(user.cardOfTheDay.lastDay);
-
-    // let difference = Math.abs(today - lastDay);
-    // let days = difference/(1000 * 3600 * 24)
-
-    // if (days >= 1) {
-      
-    //   user.cardOfTheDay = {
-    //     cardId: newCard.id,
-    //     discount: 0.5,
-    //     lastDay: today
-    //   }
-    //   user = {...user, ...user.cardOfTheDay}
-    //   console.log(user);
-    //   UsersModel.findOneAndUpdate({ "email": userEmail.userEmail }, user);
-    // }
   } catch (e) {
     console.log("Erro", e)
     res.status(500).send({
