@@ -96,4 +96,21 @@ router.post("/addCard", async (req, res, next) => {
   }
 });
 
+router.post("/buyCards", async (req, res, next) => {
+  try{
+    let cardsIds = req.body;
+    cardsIds.forEach( async (c) => {
+      await CardsModel.updateOne(
+        { "id": c.id },
+        { "$inc": { "quantity": -c.qtd } }
+      )
+    });
+  } catch (e) {
+    res.status(500).send({
+      message: "Falha ao processar sua requisição",
+      erro: e.message,
+    });
+  }
+});
+
 module.exports = router;
